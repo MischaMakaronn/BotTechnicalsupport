@@ -9,18 +9,14 @@ import datetime as DT
 import time
 import json
 
-# logfile = str(datetime.date.today()) + '.log' # формируем имя лог-файла
+
 token = '5937676517:AAEG8U11wayyFFQmbJKi3Y3BdINCzUTIDWs' # токен бота
 admin_id = '734877274' # ваш айди телеграмма
 bot = telebot.TeleBot(token)
 conn = sqlite3.connect('help_teh.db', check_same_thread=False)
-markdown = """
-    *bold text*
-    _italic text_
-    [text](URL)
-    """
 
-global dish_dict
+
+global column_dict
 try :
     with conn :
         cursor = conn.cursor()
