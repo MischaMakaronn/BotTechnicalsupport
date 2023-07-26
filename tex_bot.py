@@ -28,15 +28,7 @@ try :
 except Exception as e :
     print(e)
 
-try :
-    with conn :
-        data = conn.execute("SELECT * FROM Programs")
-        prog_id = [str(i[0]) for i in conn.execute(f"SELECT * FROM Programs")]
-        prog_name = [str(i[1]) for i in conn.execute(f"SELECT * FROM Programs")]
 
-        prog_dict = dict(zip(prog_id, prog_name))
-except Exception as e :
-    print(e)
 
 # Создаем клавиатуру и кнопки для главного меню USER-панели
 Main_inline_keyb = InlineKeyboardMarkup()
