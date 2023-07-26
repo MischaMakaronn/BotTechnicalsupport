@@ -10,10 +10,9 @@ import time
 import json
 
 # logfile = str(datetime.date.today()) + '.log' # формируем имя лог-файла
-token = '5937676517:AAEG8U11wayyFFQmbJKi3Y3BdINCzUTIDWs'
-admin_id = '734877274'
+token = '5937676517:AAEG8U11wayyFFQmbJKi3Y3BdINCzUTIDWs' # токен бота
+admin_id = '734877274' # ваш айди телеграмма
 bot = telebot.TeleBot(token)
-PHOTO_DIR = 'photo'
 conn = sqlite3.connect('help_teh.db', check_same_thread=False)
 markdown = """
     *bold text*
@@ -253,7 +252,6 @@ def query_handler(call) :
         Desc_Inline_keyb = InlineKeyboardMarkup()
         Desc_Inline_keyb.add(InlineKeyboardButton("Вернуться в меню", callback_data="menu:b1"))
         Desc_Inline_keyb.add(InlineKeyboardButton("Назад к выбору программ ", callback_data="menu:b2"))
-        # Desc_Inline_keyb.add(InlineKeyboardButton("Назад ",reply_markup= Sub_inline_keyb))
         bot.edit_message_text(result, call.message.chat.id, call.message.message_id, reply_markup=Desc_Inline_keyb)
     if call.data.split(':')[1] == "sett" :
         cursor.execute(f"SELECT settings From Programs")
@@ -353,12 +351,6 @@ def query_handler(call) :
         mini_admin_keyb.add(
             InlineKeyboardButton("отзывы", callback_data="addm:reviews"))
         bot.edit_message_text("отзывы", call.message.chat.id, call.message.message_id, reply_markup=reviews_admin_keyb)
-    # if call.data.split(":")[1] == "profile" :
-    #     with conn :
-    #         prof_name = [i[1] for i in conn.execute(f"SELECT * FROM Clients")]
-    #         prof_phone_number = [i[2] for i in conn.execute(f"SELECT * FROM Clients")]
-    #
-    #         bot.send_message(call.message.chat.id, prof_name, prof_phone_number)
 
 
 print("Ready")
