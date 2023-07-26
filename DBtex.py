@@ -29,8 +29,8 @@ with con:
             name TEXT,
             description TEXT,
             settings TEXT,
-            instructions TEXT,
-            comennt TEXT
+            instructions TEXT
+        
             
         );
     """)
@@ -43,6 +43,20 @@ with con:
                 name TEXT
         );
     """)
+
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS Comment (
+                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                comment TEXT,
+                programs_id INTEGER,
+                clients_id TEXT,
+                accept BOOLEAN,
+                FOREIGN KEY (client_id) REFERENCES Clients (id),
+                FOREIGN KEY (programs_id) REFERENCES Programs (id)
+        );
+                    
+    """)
+
 
 with con:
     data = con.execute("SELECT * FROM Clients")
